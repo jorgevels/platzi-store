@@ -1,0 +1,48 @@
+# trabajamos con javascript
+language: node_js
+# os: osx
+
+# mantener en cache node_modules
+cache:
+  directories:
+    - node_modules
+
+#Version de node
+node_js:
+  - '12'
+
+# hay mas configuraciones
+git:
+  # 3 niveles de git prufundidad
+  depth:3
+
+# scrip para enviar a produccion
+script:
+  - yarn build
+
+# manda emails a esos mails cuando es exitoso y cuando falla
+notifications:
+  email:
+    reciepients:
+      - jorgevelasquez006@hotmail.com
+    on_success: always
+    on_failure: always
+
+# Indicamos con este deploy donde se va alojar la pagina
+deploy:
+  provider: pages
+  # Mantiene una historia de lo que esta sucediendo
+  skip-cleanup: true
+  keep-history: true
+  # Token para la seguridad del proyecto
+  github-token: $GITHUB_TOKEN
+  # Directorio resultante de la configuracion
+  local-dir: dist/
+  # Rama que va ha dectetar para publicar nuestro sitio
+  target-branch: gh-pages
+  # Mensaje del commit
+  commit_message: 'Deploy del proyecto'
+  # Le decimos sobre cual rama debe actuar
+  # Cuando detecte un cambio sobre master va correr todo el script
+  on:
+    branch: master
