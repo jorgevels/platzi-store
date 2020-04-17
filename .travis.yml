@@ -5,11 +5,9 @@ cache:
     - node_modules
     - ~/.npm
 
-node_js:
-  -'12'
+node_js: -"12"
 
-git:
-  depth:3
+git: depth:3
 
 script:
   # la configuracion de travis tiene yarn
@@ -17,13 +15,12 @@ script:
 
 deploy:
   provider: pages # github pages
-  skip-clean:true
-  keep-history:true
+  skip-clean: true
+  keep-history: true
   github-token: $GITHUB_TOKEN
   local-dir: dist/
   target-branch: gh-pages
-  commit_message:"deploy on project"
+  commit_message: 'deploy on project'
   on:
     branch: master
-
 # por defecto yarn hace yarn install
